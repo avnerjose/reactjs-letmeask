@@ -1,4 +1,6 @@
-.page-auth {
+import styled from "styled-components";
+
+export const Container = styled.div`
   display: flex;
   align-items: stretch;
   height: 100vh;
@@ -41,9 +43,9 @@
     align-items: center;
     justify-content: center;
   }
-}
+`;
 
-.main-content {
+export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -59,6 +61,7 @@
     font-size: 1.5rem;
     margin: 2rem 0 1.5rem;
     font-family: "Poppins", sans-serif;
+    color: ${({ theme }) => theme.title};
   }
 
   form {
@@ -66,8 +69,9 @@
       height: 3.125rem;
       border-radius: 0.5rem;
       padding: 0 1rem;
-      background: #fff;
+      background: ${({ theme }) => theme.component};
       border: 1px solid #a8a8b3;
+      color: ${({ theme }) => theme.text};
     }
 
     button {
@@ -139,4 +143,4 @@
       margin-left: 1rem;
     }
   }
-}
+`;

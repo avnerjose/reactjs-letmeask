@@ -1,4 +1,6 @@
-.content {
+import styled from "styled-components";
+
+export const Content = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +18,7 @@
 
   h1 {
     font-family: "Poppins", sans-serif;
-    color: #29292e;
+    color: ${({ theme }) => theme.title};
     font-weight: bold;
     font-size: 1.5rem;
     margin: 1rem 0 0.75rem;
@@ -52,38 +54,4 @@
       }
     }
   }
-}
-
-.react-modal-overlay {
-  background: rgba(255, 255, 255, 0.5);
-
-  position: fixed;
-  inset: 0 0 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.react-modal-content {
-  width: 100%;
-  max-width: 576px;
-  background: #f8f8f8;
-
-  position: relative;
-  margin: auto;
-  border-radius: 0.5rem;
-  box-shadow: 8px 12px 12px rgba(0, 0, 0, 0.05);
-}
-
-.react-modal-close {
-  position: absolute;
-  right: 1.5rem;
-  top: 1.5rem;
-  border: 0;
-  background: transparent;
-  transition: filter 0.2s ease-in-out;
-
-  &:hover {
-    filter: brightness(0.8);
-  }
-}
+`;

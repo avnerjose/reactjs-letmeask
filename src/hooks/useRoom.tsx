@@ -42,7 +42,6 @@ export function useRoom(roomId: string) {
 
   useEffect(() => {
     const roomRef = ref(database, `rooms/${roomId}`);
-    const dbRef = ref(database);
 
     const unsubscribeRoomListener = onValue(roomRef, (room) => {
       const databaseRoom = room.val();

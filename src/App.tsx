@@ -5,7 +5,6 @@ import { AdminRoom } from "./pages/AdminRoom";
 
 import { Route, Routes } from "react-router-dom";
 
-import "./styles/global.scss";
 function App() {
   return (
     <Routes>

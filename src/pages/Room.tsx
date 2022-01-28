@@ -2,6 +2,7 @@ import { push, ref, remove, set } from "firebase/database";
 import { FormEvent, useState } from "react";
 import { useParams } from "react-router-dom";
 import logoImg from "../assets/images/logo.svg";
+import darkLogoImg from "../assets/images/darklogo.svg";
 import { Button } from "../components/Button";
 import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
@@ -10,8 +11,10 @@ import { useRoom } from "../hooks/useRoom";
 import { database } from "../services/firebase";
 import { ReactComponent as LikeIcon } from "../assets/images/like.svg";
 
-import styles from "../styles/Pages/room.module.scss";
+import { Container } from "../styles/Pages/room";
 import { NoQuestionCard } from "../components/NoQuestionCard";
+import { useThemeContext } from "../contexts/ThemeContext";
+import { ThemeSwitch } from "../components/ThemeSwitch";
 
 type HandleLikeQuestionProps = {
   questionId: string;
@@ -22,6 +25,7 @@ export function Room() {
   const { user } = useAuth();
   const { id: roomId } = useParams();
   const [newQuestion, setNewQuestion] = useState("");
+  const { theme } = useThemeContext();
   const { questions, title } = useRoom(roomId ?? "");
 
   async function handleLikeQuestion({
@@ -77,16 +81,18 @@ export function Room() {
   }
 
   return (
-    <div className={styles["page-room"]}>
+    <Container>
       <header>
-        <div className={styles["content"]}>
-          <img src={logoImg} alt="LetMeAsk" />
-          <RoomCode code={String(roomId)} />
+        <div className="content">
+          <img src={theme === "light" ? logoImg : darkLogoImg} alt="LetMeAsk" />
+          <div>
+            <RoomCode code={String(roomId)} />
+            <ThemeSwitch />
+          </div>
         </div>
       </header>
-
-      <main className={styles["content"]}>
-        <div className={styles["room-title"]}>
+      <main>
+        <div className="room-title">
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
@@ -97,9 +103,9 @@ export function Room() {
             onChange={(event) => setNewQuestion(event.target.value)}
             value={newQuestion}
           />
-          <div className={styles["form-footer"]}>
+          <div className="form-footer">
             {user ? (
-              <div className={styles["user-info"]}>
+              <div className="user-info">
                 <img src={user.avatar} alt={user.name} />
                 <span>{user.name}</span>
               </div>
@@ -113,7 +119,7 @@ export function Room() {
             </Button>
           </div>
         </form>
-        <div className={styles["question-list"]}>
+        <div className="question-list">
           {questions.map(
             ({
               id: questionId,
@@ -148,6 +154,6 @@ export function Room() {
           {!questions.length && <NoQuestionCard />}
         </div>
       </main>
-    </div>
+    </Container>
   );
 }

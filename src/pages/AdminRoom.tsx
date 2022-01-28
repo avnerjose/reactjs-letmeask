@@ -7,19 +7,22 @@ import { DeleteModal } from "../components/DeleteModal";
 import { Question } from "../components/Question";
 import { RoomCode } from "../components/RoomCode";
 import { useRoom } from "../hooks/useRoom";
-
+import darkLogoImg from "../assets/images/darklogo.svg";
 import logoImg from "../assets/images/logo.svg";
 import { ReactComponent as DeleteIcon } from "../assets/images/delete.svg";
 import { ReactComponent as CheckIcon } from "../assets/images/check.svg";
 import { ReactComponent as AnswerIcon } from "../assets/images/answer.svg";
-import styles from "../styles/Pages/room.module.scss";
+import { Container } from "../styles/Pages/room";
 import { database } from "../services/firebase";
 import { NoQuestionCard } from "../components/NoQuestionCard";
+import { ThemeSwitch } from "../components/ThemeSwitch";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 export function AdminRoom() {
   const { id: roomId } = useParams();
   const { questions, title } = useRoom(roomId ?? "");
   const navigate = useNavigate();
+  const { theme } = useThemeContext();
   const [isDeleteRoomModalOpen, setIsDeleteRoomModalOpen] = useState(false);
   const [isDeleteQuestionModalOpen, setIsDeleteQuestionModalOpen] =
     useState(false);
@@ -67,7 +70,7 @@ export function AdminRoom() {
   }
 
   return (
-    <div className={styles["page-room"]}>
+    <Container>
       <DeleteModal
         isModalOpen={isDeleteRoomModalOpen}
         handleDeleteItem={() => handleEndRoom()}
@@ -85,23 +88,24 @@ export function AdminRoom() {
         buttonText="Sim, excluir"
       />
       <header>
-        <div className={styles["content"]}>
-          <img src={logoImg} alt="LetMeAsk" />
+        <div className="content">
+          <img src={theme === "light" ? logoImg : darkLogoImg} alt="LetMeAsk" />
           <div>
             <RoomCode code={String(roomId)} />
             <Button isOutlined onClick={() => setIsDeleteRoomModalOpen(true)}>
               Encerrar sala
             </Button>
+            <ThemeSwitch />
           </div>
         </div>
       </header>
-      <main className={styles["content"]}>
-        <div className={styles["room-title"]}>
+      <main className="content">
+        <div className="room-title">
           <h1>Sala {title}</h1>
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
-        <div className={styles["question-list"]}>
+        <div className="question-list">
           {questions.map(
             ({ id, content, author, isAnswered, isHighlighted }) => (
               <Question
@@ -137,6 +141,6 @@ export function AdminRoom() {
           {!questions.length && <NoQuestionCard />}
         </div>
       </main>
-    </div>
+    </Container>
   );
 }

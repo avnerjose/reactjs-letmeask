@@ -1,6 +1,6 @@
 import Modal from "react-modal";
 import { ReactComponent as DeleteIcon } from "../../assets/images/delete.svg";
-import "./styles.scss";
+import { Content } from "./styles";
 
 Modal.setAppElement("#root");
 
@@ -27,9 +27,8 @@ export function DeleteModal({
       overlayClassName="react-modal-overlay"
       className="react-modal-content"
     >
-      <div className="content">
+      <Content>
         <DeleteIcon />
-
         <h1>{title}</h1>
         <p>{subtitle}</p>
 
@@ -45,7 +44,7 @@ export function DeleteModal({
             {buttonText}
           </button>
         </div>
-      </div>
+      </Content>
     </Modal>
   );
 }

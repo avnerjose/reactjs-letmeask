@@ -1,17 +1,20 @@
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
+import darkLogoImg from "../assets/images/darklogo.svg";
 import googleIcon from "../assets/images/google-icon.svg";
 
-import styles from "../styles/Pages/auth.module.scss";
+import { Container, MainContent } from "../styles/Pages/auth";
 import { Button } from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { FormEvent, useState } from "react";
 import { database } from "../services/firebase";
 import { get, ref } from "firebase/database";
+import { useThemeContext } from "../contexts/ThemeContext";
 
 export function Home() {
   const navigate = useNavigate();
+  const { theme } = useThemeContext();
   const { user, signInWithGoogle } = useAuth();
   const [roomCode, setRoomCode] = useState("");
 
@@ -51,20 +54,20 @@ export function Home() {
   }
 
   return (
-    <div className={styles["page-auth"]}>
+    <Container>
       <aside>
         <img src={illustrationImg} alt="letmeask" />
         <strong>Crie salas de Q&amp;A ao vivo</strong>
         <p>Tire as dúvidas da sua audiência em tempo real</p>
       </aside>
       <main>
-        <div className={styles["main-content"]}>
-          <img src={logoImg} alt="LetMeAsk" />
-          <button className={styles["create-room"]} onClick={handleCreateRoom}>
+        <MainContent>
+          <img src={theme === "light" ? logoImg : darkLogoImg} alt="LetMeAsk" />
+          <button className="create-room" onClick={handleCreateRoom}>
             <img src={googleIcon} alt="Google" />
             Crie sua sala com o Google
           </button>
-          <div className={styles["separator"]}>ou entre em uma sala</div>
+          <div className="separator">ou entre em uma sala</div>
           <form onSubmit={handleJoinRoom}>
             <input
               type="text"
@@ -74,8 +77,8 @@ export function Home() {
             />
             <Button type="submit">Entrar na sala</Button>
           </form>
-        </div>
+        </MainContent>
       </main>
-    </div>
+    </Container>
   );
 }

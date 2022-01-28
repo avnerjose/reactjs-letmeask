@@ -1,28 +1,42 @@
-.question {
-  background: #fefefe;
+import styled from "styled-components";
+
+export const Container = styled.div`
+  background: ${({ theme }) => theme.component};
   border-radius: 0.5rem;
   box-shadow: 0 0.125rem 0.75rem rgba(0, 0, 0, 0.04);
   padding: 1.5rem;
 
-  & + .question {
+  & + & {
     margin-top: 0.5rem;
   }
 
   &.highlighted {
-    background: #f4f0ff;
+    background: ${({ theme }) => theme.highlighted};
     border: 1px solid #835afd;
 
     footer .user-info span {
-      color: #29292e;
+      color: ${({ theme }) => theme.text};
     }
   }
 
   &.answered {
-    background: #dbdcdd;
+    background: ${({ theme }) => theme.answered};
+
+    svg {
+      filter: brightness(1.3);
+    }
+
+    footer {
+      .user-info {
+        span {
+          filter: brightness(1.3);
+        }
+      }
+    }
   }
 
   p {
-    color: #29292e;
+    color: ${({ theme }) => theme.text};
   }
 
   footer {
@@ -95,4 +109,4 @@
       }
     }
   }
-}
+`;

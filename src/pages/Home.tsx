@@ -1,3 +1,4 @@
+import React from "react";
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import darkLogoImg from "../assets/images/darklogo.svg";
@@ -68,7 +69,7 @@ export function Home() {
             Crie sua sala com o Google
           </button>
           <div className="separator">ou entre em uma sala</div>
-          <form onSubmit={handleJoinRoom}>
+          <form onSubmit={handleJoinRoom} aria-label="form">
             <input
               type="text"
               placeholder="Digite o código da sala"

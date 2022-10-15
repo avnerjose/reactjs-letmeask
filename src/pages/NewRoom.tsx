@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 import illustrationImg from "../assets/images/illustration.svg";
 import logoImg from "../assets/images/logo.svg";
 import darkLogoImg from "../assets/images/darklogo.svg";
@@ -10,7 +8,7 @@ import { FormEvent, useState } from "react";
 import { database } from "../services/firebase";
 import { push, ref, set } from "firebase/database";
 import { useAuth } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useThemeContext } from "../contexts/ThemeContext";
 
 export function NewRoom() {
@@ -49,7 +47,7 @@ export function NewRoom() {
         <MainContent>
           <img src={theme === "light" ? logoImg : darkLogoImg} alt="LetMeAsk" />
           <h2>Criar uma nova sala</h2>
-          <form onSubmit={handleCreateRoom}>
+          <form onSubmit={handleCreateRoom} aria-label="form">
             <input
               type="text"
               placeholder="Nome da sala"

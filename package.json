@@ -3,14 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^12.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.7.13",
-    "@types/react": "^17.0.20",
-    "@types/react-dom": "^17.0.9",
-    "@types/react-router-dom": "^5.3.3",
     "classnames": "^2.3.1",
     "firebase": "^9.6.4",
     "js-cookie": "^3.0.1",
@@ -21,7 +13,6 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "react-switch": "^6.0.0",
-    "sass": "^1.49.0",
     "styled-components": "^5.3.3",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
@@ -29,7 +20,7 @@
   "scripts": {
     "dev": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -51,8 +42,24 @@
     ]
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.16.7",
+    "@testing-library/dom": "^8.11.3",
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
     "@types/js-cookie": "^3.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^17.0.20",
+    "@types/react-dom": "^17.0.9",
     "@types/react-modal": "^3.13.1",
-    "@types/styled-components": "^5.1.21"
+    "@types/react-router-dom": "^5.3.3",
+    "@types/styled-components": "^5.1.21",
+    "babel-jest": "^27.4.6",
+    "jest": "^27.4.7",
+    "jest-dom": "^4.0.0",
+    "jest-mock": "^27.4.6",
+    "jest-svg-transformer": "^1.0.0",
+    "ts-node": "^10.4.0"
   }
 }

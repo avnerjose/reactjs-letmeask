@@ -97,7 +97,7 @@ export function Room() {
           {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
-        <form onSubmit={handleSendQuestion}>
+        <form onSubmit={handleSendQuestion} aria-label="form">
           <textarea
             placeholder="o que você quer perguntar?"
             onChange={(event) => setNewQuestion(event.target.value)}
